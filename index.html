@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mohammad Tabatabaei</title>
+  <meta name="description" content="Mohammad Tabatabaei — Physics / Complex Systems / Networks" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 48px 20px; }
+    .card { border: 1px solid #e6e6e6; border-radius: 16px; padding: 24px; }
+    h1 { margin: 0 0 8px; font-size: 36px; }
+    .subtitle { margin: 0 0 18px; color: #444; font-size: 16px; line-height: 1.5; }
+    .links a { display: inline-block; margin-right: 12px; margin-top: 8px; text-decoration: none; border: 1px solid #ddd;
+              padding: 8px 12px; border-radius: 999px; color: #111; }
+    .links a:hover { border-color: #aaa; }
+    h2 { margin-top: 28px; font-size: 20px; }
+    ul { margin: 10px 0 0 18px; }
+    .muted { color: #666; font-size: 14px; margin-top: 14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Mohammad Tabatabaei</h1>
+      <p class="subtitle">
+        Physics / Complex Systems • Agent-Based Modeling • Networks
+      </p>
+
+      <div class="links">
+        <a href="https://github.com/tabatabaeiphys" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:youremail@example.com">Email</a>
+      </div>
+
+      <h2>About</h2>
+      <p>
+        I work on modeling collective dynamics on networks (e.g., learning, imitation–exploration, and related
+        statistical-physics inspired processes). This page is a lightweight hub for my projects and links.
+      </p>
+
+      <h2>Projects</h2>
+      <ul>
+        <li><strong>ABM on networks:</strong> simulations, analysis, and visualization</li>
+        <li><strong>Complex networks:</strong> WS/BA/ER/caveman variants, structural metrics</li>
+        <li><strong>Reproducible code:</strong> notebooks, figures, and results</li>
+      </ul>
+
+      <p class="muted">
+        Last updated: <span id="d"></span>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("d").textContent = new Date().toISOString().slice(0,10);
+  </script>
+</body>
+</html>
