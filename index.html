@@ -208,6 +208,12 @@
     /* ---------- TAB PANELS ---------- */
     .tab-panel { display: none; }
     .tab-panel.active { display: block; }
+/* LinkedIn badge theme matching */
+
+.linkedin-badge-dark { display: block; }
+.linkedin-badge-light { display: none; }
+[data-theme="light"] .linkedin-badge-dark { display: none; }
+[data-theme="light"] .linkedin-badge-light { display: block; }
 
     /* ---------- CARDS & LAYOUT ---------- */
     .hero-card {
@@ -433,6 +439,8 @@
     }
   </style>
 </head>
+<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+
 <body>
   <div class="nav">
     <div class="nav-inner">
@@ -1045,6 +1053,7 @@
     </div>
 
 <!-- ==================== CV & CONTACT TAB ==================== -->
+<!-- ==================== CV & CONTACT TAB ==================== -->
 <div class="tab-panel" id="cv">
   <div class="card">
     <h2>CV & Contact</h2>
@@ -1082,6 +1091,7 @@
 
     <!-- Contact & References (2 columns on desktop) -->
     <div class="grid-2" style="margin-bottom: 18px;">
+      <!-- Contact column -->
       <div>
         <h3 class="section-title" style="border-bottom:0; margin-bottom:8px;">Contact</h3>
         <p style="margin:6px 0; font-size:14px; color:var(--text);">
@@ -1090,10 +1100,39 @@
           📱 +98 930 312 0990
         </p>
         <p style="margin:10px 0; font-size:14px; color:var(--text);">
-          🌐 <a href="https://github.com/tabatabaeiphys" target="_blank" rel="noopener noreferrer">github.com/tabatabaeiphys</a><br/>
-          🌐 <a href="https://www.linkedin.com/in/mohamad-tabatabaei/" target="_blank" rel="noopener noreferrer">linkedin.com/in/mohamad-tabatabaei</a>
+          🌐 <a href="https://github.com/tabatabaeiphys" target="_blank" rel="noopener noreferrer">github.com/tabatabaeiphys</a>
         </p>
+
+        <!-- LinkedIn Badge – dark theme -->
+        <div class="badge-base LI-profile-badge linkedin-badge-dark"
+             data-locale="en_US"
+             data-size="large"
+             data-theme="dark"
+             data-type="HORIZONTAL"
+             data-vanity="mohamad-tabatabaei"
+             data-version="v1">
+          <a class="badge-base__link LI-simple-link"
+             href="https://ir.linkedin.com/in/mohamad-tabatabaei?trk=profile-badge">
+            Mohammad Tabatabaei
+          </a>
+        </div>
+
+        <!-- LinkedIn Badge – light theme -->
+        <div class="badge-base LI-profile-badge linkedin-badge-light"
+             data-locale="en_US"
+             data-size="large"
+             data-theme="light"
+             data-type="HORIZONTAL"
+             data-vanity="mohamad-tabatabaei"
+             data-version="v1">
+          <a class="badge-base__link LI-simple-link"
+             href="https://ir.linkedin.com/in/mohamad-tabatabaei?trk=profile-badge">
+            Mohammad Tabatabaei
+          </a>
+        </div>
       </div>
+
+      <!-- References column -->
       <div>
         <h3 class="section-title" style="border-bottom:0; margin-bottom:8px;">References</h3>
         <p style="font-size:14px; margin:4px 0; color:var(--text);">
@@ -1124,7 +1163,6 @@
     </div>
   </div>
 </div>
-
   <!-- Lightbox overlay -->
   <div class="lightbox" id="lightbox" onclick="this.classList.remove('show')">
     <img src="" alt="" id="lightboxImg" />
