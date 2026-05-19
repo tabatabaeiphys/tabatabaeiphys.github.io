@@ -1199,7 +1199,7 @@
       if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('show');
     });
   </script>
-  <script>
+<script>
 (function() {
   const abbrMap = {
     'IUT': 'Isfahan University of Technology',
@@ -1219,14 +1219,24 @@
     'IASBS' : 'Institute for Advanced Studies in Basic Sciences'
   };
 
+  // Build regex patterns that handle words with dots correctly
+  function buildRegex(abbr) {
+    const escaped = abbr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    // For abbreviations ending with a dot, the word boundary after a dot doesn't work.
+    // Use a lookahead that allows a non-word char or end of string.
+    if (abbr.endsWith('.')) {
+      return new RegExp(`\\b${escaped}(?=[^\\w]|$)`, 'g');
+    }
+    return new RegExp(`\\b${escaped}\\b`, 'g');
+  }
+
   function replaceAbbreviations(root) {
     if (root.nodeType === Node.ELEMENT_NODE && (root.tagName === 'SCRIPT' || root.tagName === 'STYLE')) return;
     if (root.nodeType === Node.TEXT_NODE) {
       let text = root.nodeValue;
       let changed = false;
       for (const [abbr, full] of Object.entries(abbrMap)) {
-        const escapedAbbr = abbr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const regex = new RegExp(`\\b${escapedAbbr}\\b`, 'g');
+        const regex = buildRegex(abbr);
         if (regex.test(text)) {
           changed = true;
           text = text.replace(regex, `<abbr title="${full}">${abbr}</abbr>`);
@@ -1244,6 +1254,56 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     replaceAbbreviations(document.body);
+
+    // ========== Mobile tap tooltip ==========
+    // Remove any previously created mobile tooltip (just in case)
+    const existing = document.getElementById('mobile-abbr-tooltip');
+    if (existing) existing.remove();
+
+    const tooltip = document.createElement('div');
+    tooltip.id = 'mobile-abbr-tooltip';
+    tooltip.style.cssText = `
+      position: fixed;
+      z-index: 9999;
+      background: var(--accent, #7dd3fc);
+      color: #000;
+      padding: 6px 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      max-width: 200px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    `;
+    document.body.appendChild(tooltip);
+
+    let hideTimeout;
+
+    document.addEventListener('touchstart', (e) => {
+      const abbr = e.target.closest('abbr');
+      if (!abbr) return;
+
+      e.preventDefault(); // prevent any default long‑press menu
+
+      const rect = abbr.getBoundingClientRect();
+      tooltip.textContent = abbr.title;
+      tooltip.style.left = (rect.left + rect.width / 2) + 'px';
+      tooltip.style.top = (rect.bottom + 8) + 'px';
+      tooltip.style.transform = 'translate(-50%, 0)';
+      tooltip.style.opacity = '1';
+
+      clearTimeout(hideTimeout);
+      hideTimeout = setTimeout(() => {
+        tooltip.style.opacity = '0';
+      }, 2000);
+    }, { passive: false });
+
+    // Also hide on scroll
+    window.addEventListener('scroll', () => {
+      tooltip.style.opacity = '0';
+    }, { passive: true });
   });
 })();
 </script>
