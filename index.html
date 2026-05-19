@@ -628,57 +628,61 @@
       </div>
 
       <!-- Skills & Languages -->
-      <div class="card">
-        <h2>Skills & Languages</h2>
-        <div class="grid-2">
-          <div>
-            <div class="role" style="margin-bottom:6px;">Programming & Tools</div>
-            <div class="chips">
-              <span class="chip">Python (NumPy, Pandas, NetworkX, Scikit‑learn)</span>
-              <span class="chip">TensorFlow</span>
-              <span class="chip">Julia (basic)</span>
-              <span class="chip">FORTRAN (basic)</span>
-              <span class="chip">Git & GitHub</span>
-              <span class="chip">Linux / Bash</span>
-              <span class="chip">LaTeX</span>
-              <span class="chip">NetLogo</span>
-              <span class="chip">COMSOL</span>
-            </div>
-          </div>
-          <div>
-            <div class="role" style="margin-bottom:6px;">Theory & Methods</div>
-            <div class="chips">
-              <span class="chip">Statistical Mechanics</span>
-              <span class="chip">Stochastic Processes</span>
-              <span class="chip">Complex Networks</span>
-              <span class="chip">Agent‑Based Modeling</span>
-              <span class="chip">Data Analysis</span>
-              <span class="chip">Machine Learning (basics)</span>
-              <span class="chip">Uncertainty Quantification</span>
-            </div>
-            <div class="role" style="margin:12px 0 6px;">Languages</div>
-            <div class="chips">
-              <span class="chip">Persian – C2 (Native)</span>
-              <span class="chip" style="display:inline-flex; align-items:center; gap:4px; cursor:default;">
-                English – C1 (IELTS)
-                <span onclick="event.stopPropagation(); switchTab('certificates'); setTimeout(() => { const el = document.getElementById('cert-ielts'); if(el) { el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('highlight-pulse'); setTimeout(() => el.classList.remove('highlight-pulse'), 2000); } }, 100);"
-                      title="View IELTS certificate"
-                      style="cursor:pointer; display:inline-flex; align-items:center; opacity:0.8; transition:opacity 0.2s;"
-                      onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M6 2h8l4 4v16H6V2Z" stroke-linejoin="round"/>
-                    <path d="M14 2v6h6" stroke-linejoin="round"/>
-                    <path d="M9 13h6" stroke-linecap="round"/>
-                    <path d="M9 17h6" stroke-linecap="round"/>
-                  </svg>
-                </span>
-              </span>
-              <span class="chip">Arabic – A1</span>
-            </div>
-          </div>
-        </div>
+<!-- Skills & Languages -->
+<div class="card">
+  <h2>Skills & Languages</h2>
+  <div class="grid-2">
+    <!-- Left column: Programming & Tools + Languages -->
+    <div>
+      <div class="role" style="margin-bottom:6px;">Programming & Tools</div>
+      <div class="chips">
+        <span class="chip">Python (NumPy, Pandas, NetworkX, Scikit‑learn)</span>
+        <span class="chip">TensorFlow</span>
+        <span class="chip">Julia (basic)</span>
+        <span class="chip">FORTRAN (basic)</span>
+        <span class="chip">Git & GitHub</span>
+        <span class="chip">Linux / Bash</span>
+        <span class="chip">LaTeX</span>
+        <span class="chip">NetLogo</span>
+        <span class="chip">COMSOL</span>
+      </div>
+
+      <div class="role" style="margin:12px 0 6px;">Languages</div>
+      <div class="chips">
+        <span class="chip">Persian – C2 (Native)</span>
+        <span class="chip" style="display:inline-flex; align-items:center; gap:4px; cursor:default;">
+          English – C1 (IELTS)
+          <span onclick="event.stopPropagation(); switchTab('certificates'); setTimeout(() => { const el = document.getElementById('cert-ielts'); if(el) { el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('highlight-pulse'); setTimeout(() => el.classList.remove('highlight-pulse'), 2000); } }, 100);"
+                title="View IELTS certificate"
+                style="cursor:pointer; display:inline-flex; align-items:center; opacity:0.8; transition:opacity 0.2s;"
+                onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2h8l4 4v16H6V2Z" stroke-linejoin="round"/>
+              <path d="M14 2v6h6" stroke-linejoin="round"/>
+              <path d="M9 13h6" stroke-linecap="round"/>
+              <path d="M9 17h6" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </span>
+        <span class="chip">Arabic – A1</span>
       </div>
     </div>
+
+    <!-- Right column: Theory & Methods -->
+    <div>
+      <div class="role" style="margin-bottom:6px;">Theory & Methods</div>
+      <div class="chips">
+        <span class="chip">Statistical Mechanics</span>
+        <span class="chip">Stochastic Processes</span>
+        <span class="chip">Complex Networks</span>
+        <span class="chip">Agent‑Based Modeling</span>
+        <span class="chip">Data Analysis</span>
+        <span class="chip">Machine Learning (basics)</span>
+        <span class="chip">Uncertainty Quantification</span>
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- ==================== RESEARCH TAB ==================== -->
     <div class="tab-panel" id="research">
