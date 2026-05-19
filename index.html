@@ -81,7 +81,6 @@
       --lightbox-bg: rgba(255,255,255,.96);
       --footer-color: #666;
       --body-bg: #f8f9fa;
-      /* Gallery items in light theme get a slightly tinted background and a subtle shadow for tidiness */
       --gallery-item-bg: #f2f4f8;
       --gallery-item-border: #d5d8dd;
       --gallery-shadow: 0 4px 12px rgba(0,0,0,.04);
@@ -222,7 +221,10 @@
       gap: 18px;
       align-items: flex-start;
     }
-    @media (max-width: 700px) { .hero-card { flex-direction: column; } }
+    @media (max-width: 700px) {
+      .hero-card { flex-direction: column; }
+      .avatar { width: 80px; height: 80px; }  /* smaller on phones */
+    }
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -324,10 +326,21 @@
     }
     .avatar img { width: 100%; height: 100%; object-fit: cover; }
 
+    /* Tagline – ensures bullets stick to words */
+    .tagline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5ch;   /* small gap between items */
+      align-items: center;
+    }
+    .tagline span {
+      white-space: nowrap;
+    }
+
     /* Gallery & Certificates */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 12px;
     }
     .gallery-item {
@@ -345,7 +358,6 @@
       box-shadow: 0 6px 16px rgba(0,0,0,.1);
     }
     [data-theme="light"] .gallery-item {
-      /* Override for light theme to make them look tidy and distinct */
       background: #f2f4f8;
       border-color: #d5d8dd;
       box-shadow: 0 4px 12px rgba(0,0,0,.04);
@@ -402,7 +414,7 @@
       padding-bottom: 4px;
     }
 
-    /* Highlight pulse animation for IELTS scroll */
+    /* Highlight pulse animation */
     .highlight-pulse {
       animation: pulseGlow 0.8s ease-out 2;
     }
@@ -467,22 +479,26 @@
         </div>
         <div>
           <h1 style="font-size:2rem; letter-spacing:-0.02em;">Mohammad Tabatabaei</h1>
-          <p style="color:var(--muted); margin-top:4px;">
-          • Complex Systems • Statistical Physics • Network Science  <br />    
-  • Data Analysis  • Agent‑Based Modeling
+          <!-- Subtitle with non-breaking bullet groups -->
+          <p class="tagline" style="color:var(--muted); margin-top:4px;">
+            <span>• Complex Systems</span>
+            <span>• Statistical Physics</span>
+            <span>• Network Science</span><br />
+            <span>• Data Analysis</span>
+            <span>• Agent‑Based Modeling</span>
           </p>
-<p style="margin-top:12px; color:var(--text); font-size:15px;">
-  I recently completed my Master’s in Complex Systems through the lens of statistical physics.
-  My thesis extended exploration–imitation dynamics with degree‑dependent biases, revealing how network structure
-  shapes collective opinion and variance.
-</p>
-<p style="margin-top:12px; color:var(--text); font-size:15px;">
-  My research interests lie at the intersection of network science, stochastic dynamics, and machine learning.
-  I’m particularly drawn to <strong>biophysics and neuroscience</strong>, <strong>econophysics and social physics</strong>, and the
-  <strong>mathematical foundations of AI</strong>, wherever complex, interconnected systems produce emergent, data‑rich behaviour.
-  I’m actively seeking PhD positions where I can apply computational modeling, network science, and machine learning
-  to fundamental or applied problems in these areas.
-</p>
+          <p style="margin-top:12px; color:var(--text); font-size:15px;">
+            I recently completed my Master’s in Complex Systems through the lens of statistical physics.
+            My thesis extended exploration–imitation dynamics with degree‑dependent biases, revealing how network structure
+            shapes collective opinion and variance.
+          </p>
+          <p style="margin-top:12px; color:var(--text); font-size:15px;">
+            My research interests lie at the intersection of network science, stochastic dynamics, and machine learning.
+            I’m particularly drawn to <strong>biophysics and neuroscience</strong>, <strong>econophysics and social physics</strong>, and the
+            <strong>mathematical foundations of AI</strong>, wherever complex, interconnected systems produce emergent, data‑rich behaviour.
+            I’m actively seeking PhD positions where I can apply computational modeling, network science, and machine learning
+            to fundamental or applied problems in these areas.
+          </p>
           <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
             <a class="btn" href="assets/CV.pdf" target="_blank">
               <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -508,8 +524,7 @@
           </div>
           <div class="place">Isfahan University of Technology, Iran · GPA: 17.37/20 (First Class Honors)</div>
           <p class="desc">Thesis: <em>Impact of Vertex Degree on Exploration–Imitation Dynamics in Complex Systems</em></p>
-          <p style="margin-top:6px; color:var(--muted); font-size:13px;">
-          </p>
+          <p style="margin-top:6px; color:var(--muted); font-size:13px;"></p>
           <a class="btn" href="assets/records/master_academic_record.pdf" target="_blank" style="margin-top:8px;">
             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M6 2h8l4 4v16H6V2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
@@ -557,59 +572,61 @@
       </div>
 
       <!-- Research Highlights -->
-<div class="card">
-  <h2>Research Highlights <a href="#research" class="pill" style="cursor:pointer;" onclick="event.preventDefault(); switchTab('research')">Full projects →</a></h2>
-  <ul>
-    <li>
-      <strong>Exploration–Imitation Dynamics:</strong> Degree‑dependent prestige bias across eight synthetic networks. Power‑law decay of hub influence in BA networks.
-      <span style="display:inline-flex; align-items:center; gap:2px; cursor:default;">
-        (Poster, 30th IASBS Meeting)
-        <span onclick="event.stopPropagation(); switchTab('certificates'); setTimeout(() => { const el = document.getElementById('cert-poster-zanjan'); if(el) { el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('highlight-pulse'); setTimeout(() => el.classList.remove('highlight-pulse'), 2000); } }, 100);"
-              title="View poster certificate"
-              style="cursor:pointer; display:inline-flex; align-items:center; opacity:0.8; transition:opacity 0.2s;"
-              onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 2h8l4 4v16H6V2Z" stroke-linejoin="round"/>
-            <path d="M14 2v6h6" stroke-linejoin="round"/>
-            <path d="M9 13h6" stroke-linecap="round"/>
-            <path d="M9 17h6" stroke-linecap="round"/>
-          </svg>
-        </span>
-      </span>
-    </li>
-    <li>
-      <strong>Entropy‑Based Centrality Analysis:</strong> Real networks show lower, varied entropy vs. random models; joint entropy as a higher‑order complexity measure.
-      <em style="color:var(--muted); font-size:13px;">(Poster accepted at Sharif University – certificate pending)</em>
-    </li>
-    <li>
-      <strong>Enzyme Network Modeling:</strong> Watts–Strogatz (p=0.01) best matches enzyme networks in 9/10 cases via centrality correlations.
-      <span style="display:inline-flex; align-items:center; gap:2px; cursor:default;">
-        (Oral, Iran Physics Conference)
-        <span onclick="event.stopPropagation(); switchTab('certificates'); setTimeout(() => { const el = document.getElementById('cert-yasooj'); if(el) { el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('highlight-pulse'); setTimeout(() => el.classList.remove('highlight-pulse'), 2000); } }, 100);"
-              title="View oral presentation certificate"
-              style="cursor:pointer; display:inline-flex; align-items:center; opacity:0.8; transition:opacity 0.2s;"
-              onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 2h8l4 4v16H6V2Z" stroke-linejoin="round"/>
-            <path d="M14 2v6h6" stroke-linejoin="round"/>
-            <path d="M9 13h6" stroke-linecap="round"/>
-            <path d="M9 17h6" stroke-linecap="round"/>
-          </svg>
-        </span>
-      </span>
-    </li>
-  </ul>
-</div>
+      <div class="card">
+        <h2>Research Highlights <a href="#research" class="pill" style="cursor:pointer;" onclick="event.preventDefault(); switchTab('research')">Full projects →</a></h2>
+        <ul>
+          <li>
+            <strong>Exploration–Imitation Dynamics:</strong> Degree‑dependent prestige bias across eight synthetic networks. Power‑law decay of hub influence in BA networks.
+            <span style="display:inline-flex; align-items:center; gap:2px; cursor:default;">
+              (Poster, 30th IASBS Meeting)
+              <span onclick="event.stopPropagation(); switchTab('certificates'); setTimeout(() => { const el = document.getElementById('cert-poster-zanjan'); if(el) { el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('highlight-pulse'); setTimeout(() => el.classList.remove('highlight-pulse'), 2000); } }, 100);"
+                    title="View poster certificate"
+                    style="cursor:pointer; display:inline-flex; align-items:center; opacity:0.8; transition:opacity 0.2s;"
+                    onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 2h8l4 4v16H6V2Z" stroke-linejoin="round"/>
+                  <path d="M14 2v6h6" stroke-linejoin="round"/>
+                  <path d="M9 13h6" stroke-linecap="round"/>
+                  <path d="M9 17h6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </span>
+          </li>
+          <li>
+            <strong>Entropy‑Based Centrality Analysis:</strong> Real networks show lower, varied entropy vs. random models; joint entropy as a higher‑order complexity measure.
+            <em style="color:var(--muted); font-size:13px;">(Poster accepted at Sharif University – certificate pending)</em>
+          </li>
+          <li>
+            <strong>Enzyme Network Modeling:</strong> Watts–Strogatz (p=0.01) best matches enzyme networks in 9/10 cases via centrality correlations.
+            <span style="display:inline-flex; align-items:center; gap:2px; cursor:default;">
+              (Oral, Iran Physics Conference)
+              <span onclick="event.stopPropagation(); switchTab('certificates'); setTimeout(() => { const el = document.getElementById('cert-yasooj'); if(el) { el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('highlight-pulse'); setTimeout(() => el.classList.remove('highlight-pulse'), 2000); } }, 100);"
+                    title="View oral presentation certificate"
+                    style="cursor:pointer; display:inline-flex; align-items:center; opacity:0.8; transition:opacity 0.2s;"
+                    onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 2h8l4 4v16H6V2Z" stroke-linejoin="round"/>
+                  <path d="M14 2v6h6" stroke-linejoin="round"/>
+                  <path d="M9 13h6" stroke-linecap="round"/>
+                  <path d="M9 17h6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </span>
+          </li>
+        </ul>
+      </div>
+
       <!-- Teaching Highlights -->
-<div class="card">
-  <h2>Teaching Highlights <a href="#teaching" class="pill" style="cursor:pointer;" onclick="event.preventDefault(); switchTab('teaching')">Full details + materials →</a></h2>
-  <ul>
-    <li><strong>Complex Systems Workshop Instructor (TA):</strong> Led two terms of computational sessions on data analysis and network science; designed projects on data and networks; graded all assignments.</li>
-    <li><strong>Advanced Statistical Mechanics II (TA):</strong> Assisted with homework and grading; ran workshops on stochastic simulations and agent‑based modeling; designed graded projects and held office hours.</li>
-    <li><strong>Critical Phenomena (TA):</strong> Assisted with problem sets and grading; held office hours covering critical phenomena, scaling, and renormalization group.</li>
-    <li><strong>New Horizons in Physics School:</strong> Organised and taught the complex systems module (SIR on Watts‑Strogatz networks); mentored a student team; received excellent feedback from referees.</li>
-  </ul>
-</div>
+      <div class="card">
+        <h2>Teaching Highlights <a href="#teaching" class="pill" style="cursor:pointer;" onclick="event.preventDefault(); switchTab('teaching')">Full details + materials →</a></h2>
+        <ul>
+          <li><strong>Complex Systems Workshop Instructor (TA):</strong> Led two terms of computational sessions on data analysis and network science; designed projects on data and networks; graded all assignments.</li>
+          <li><strong>Advanced Statistical Mechanics II (TA):</strong> Assisted with homework and grading; ran workshops on stochastic simulations and agent‑based modeling; designed graded projects and held office hours.</li>
+          <li><strong>Critical Phenomena (TA):</strong> Assisted with problem sets and grading; held office hours covering critical phenomena, scaling, and renormalization group.</li>
+          <li><strong>New Horizons in Physics School:</strong> Organised and taught the complex systems module (SIR on Watts‑Strogatz networks); mentored a student team; received excellent feedback from referees.</li>
+        </ul>
+      </div>
+
       <!-- Skills & Languages -->
       <div class="card">
         <h2>Skills & Languages</h2>
@@ -678,37 +695,33 @@
             <li>Simulated four model variants on eight synthetic networks (ER, WS, BA, modular, etc.).</li>
             <li>Found that degree‑dependent imitation amplifies opinion diversity in heterogeneous networks; degree‑biased selection reduces diversity in modular networks.</li>
             <li>Power‑law decay of hub influence in BA networks; combined biases yield intermediate steady‑state variances.</li>
-<li>
-  Poster at 30th Annual IASBS Meeting on Condensed Matter Physics (May 2025); manuscript in preparation.
-  <span style="display:inline-flex; align-items:center; gap:4px; margin-left:4px;">
-    <!-- Poster file icon -->
-    <span onclick="event.stopPropagation(); switchTab('certificates'); setTimeout(() => { const el = document.getElementById('poster-thesis'); if(el) { el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('highlight-pulse'); setTimeout(() => el.classList.remove('highlight-pulse'), 2000); } }, 100);"
-          title="View poster"
-          style="cursor:pointer; display:inline-flex; align-items:center; opacity:0.8; transition:opacity 0.2s;"
-          onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <!-- Poster icon – simple frame -->
-        <rect x="3" y="3" width="18" height="18" rx="2" stroke-linejoin="round"/>
-        <line x1="8" y1="8" x2="16" y2="8" stroke-linecap="round"/>
-        <line x1="8" y1="12" x2="16" y2="12" stroke-linecap="round"/>
-        <line x1="8" y1="16" x2="12" y2="16" stroke-linecap="round"/>
-      </svg>
-    </span>
-    <!-- Certificate icon (same as before) -->
-    <span onclick="event.stopPropagation(); switchTab('certificates'); setTimeout(() => { const el = document.getElementById('cert-poster-zanjan'); if(el) { el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('highlight-pulse'); setTimeout(() => el.classList.remove('highlight-pulse'), 2000); } }, 100);"
-          title="View poster certificate"
-          style="cursor:pointer; display:inline-flex; align-items:center; opacity:0.8; transition:opacity 0.2s;"
-          onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <!-- Certificate document icon -->
-        <path d="M6 2h8l4 4v16H6V2Z" stroke-linejoin="round"/>
-        <path d="M14 2v6h6" stroke-linejoin="round"/>
-        <path d="M9 13h6" stroke-linecap="round"/>
-        <path d="M9 17h6" stroke-linecap="round"/>
-      </svg>
-    </span>
-  </span>
-</li>
+            <li>
+              Poster at 30th Annual IASBS Meeting on Condensed Matter Physics (May 2025); manuscript in preparation.
+              <span style="display:inline-flex; align-items:center; gap:4px; margin-left:4px;">
+                <span onclick="event.stopPropagation(); switchTab('certificates'); setTimeout(() => { const el = document.getElementById('poster-thesis'); if(el) { el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('highlight-pulse'); setTimeout(() => el.classList.remove('highlight-pulse'), 2000); } }, 100);"
+                      title="View poster"
+                      style="cursor:pointer; display:inline-flex; align-items:center; opacity:0.8; transition:opacity 0.2s;"
+                      onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" stroke-linejoin="round"/>
+                    <line x1="8" y1="8" x2="16" y2="8" stroke-linecap="round"/>
+                    <line x1="8" y1="12" x2="16" y2="12" stroke-linecap="round"/>
+                    <line x1="8" y1="16" x2="12" y2="16" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <span onclick="event.stopPropagation(); switchTab('certificates'); setTimeout(() => { const el = document.getElementById('cert-poster-zanjan'); if(el) { el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('highlight-pulse'); setTimeout(() => el.classList.remove('highlight-pulse'), 2000); } }, 100);"
+                      title="View poster certificate"
+                      style="cursor:pointer; display:inline-flex; align-items:center; opacity:0.8; transition:opacity 0.2s;"
+                      onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2h8l4 4v16H6V2Z" stroke-linejoin="round"/>
+                    <path d="M14 2v6h6" stroke-linejoin="round"/>
+                    <path d="M9 13h6" stroke-linecap="round"/>
+                    <path d="M9 17h6" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </span>
+            </li>
           </ul>
           <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
             <a class="btn" href="https://github.com/tabatabaeiphys/Masters_thesis/tree/main/Code" target="_blank" rel="noopener noreferrer">
@@ -737,69 +750,70 @@
             <li>Matched with ER, configuration, BA, and WS models.</li>
             <li>Random models exhibit higher, uniform entropy; real networks show lower, varied entropy.</li>
             <li>Introduced joint entropy of centrality correlations as a higher‑order complexity measure.</li>
-<li>Poster accepted at Sharif University of Technology (conference postponed due to unforeseen circumstances).</li>          </ul>
+            <li>Poster accepted at Sharif University of Technology (conference postponed due to unforeseen circumstances).</li>
+          </ul>
           <a class="btn" href="https://github.com/tabatabaeiphys/centrality-entropy" target="_blank" rel="noopener noreferrer">
             View code (GitHub)
           </a>
         </div>
 
-<div class="item">
-  <div class="item-top">
-    <span class="role">Modeling Enzyme Network Structure via Centrality Correlations</span>
-    <span class="date">2025</span>
-  </div>
-  <div class="place">Supervisor: Prof. Farhad Shahbazi, IUT</div>
-  <ul>
-    <li>Used correlation matrices of seven centrality measures to compare 10 enzyme networks with classical generative models.</li>
-    <li>Watts–Strogatz (p=0.01) best reproduced correlation patterns in 9 of 10 cases.</li>
-    <li>Proposed hybrid models for improved reconstruction of biological network structure.</li>
-    <li>
-      Oral presentation at Iran Physics Conference, Yasouj University (Oct 2025).
-      <span style="display:inline-flex; align-items:center; gap:2px; cursor:default;">
-        <span onclick="event.stopPropagation(); switchTab('certificates'); setTimeout(() => { const el = document.getElementById('cert-yasooj'); if(el) { el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('highlight-pulse'); setTimeout(() => el.classList.remove('highlight-pulse'), 2000); } }, 100);"
-              title="View oral presentation certificate"
-              style="cursor:pointer; display:inline-flex; align-items:center; opacity:0.8; transition:opacity 0.2s;"
-              onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 2h8l4 4v16H6V2Z" stroke-linejoin="round"/>
-            <path d="M14 2v6h6" stroke-linejoin="round"/>
-            <path d="M9 13h6" stroke-linecap="round"/>
-            <path d="M9 17h6" stroke-linecap="round"/>
-          </svg>
-        </span>
-      </span>
-    </li>
-  </ul>
-  <a class="btn" href="https://github.com/tabatabaeiphys/enzyme-centrality" target="_blank" rel="noopener noreferrer">
-    View code (GitHub)
-  </a>
-</div>
+        <div class="item">
+          <div class="item-top">
+            <span class="role">Modeling Enzyme Network Structure via Centrality Correlations</span>
+            <span class="date">2025</span>
+          </div>
+          <div class="place">Supervisor: Prof. Farhad Shahbazi, IUT</div>
+          <ul>
+            <li>Used correlation matrices of seven centrality measures to compare 10 enzyme networks with classical generative models.</li>
+            <li>Watts–Strogatz (p=0.01) best reproduced correlation patterns in 9 of 10 cases.</li>
+            <li>Proposed hybrid models for improved reconstruction of biological network structure.</li>
+            <li>
+              Oral presentation at Iran Physics Conference, Yasouj University (Oct 2025).
+              <span style="display:inline-flex; align-items:center; gap:2px; cursor:default;">
+                <span onclick="event.stopPropagation(); switchTab('certificates'); setTimeout(() => { const el = document.getElementById('cert-yasooj'); if(el) { el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('highlight-pulse'); setTimeout(() => el.classList.remove('highlight-pulse'), 2000); } }, 100);"
+                      title="View oral presentation certificate"
+                      style="cursor:pointer; display:inline-flex; align-items:center; opacity:0.8; transition:opacity 0.2s;"
+                      onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2h8l4 4v16H6V2Z" stroke-linejoin="round"/>
+                    <path d="M14 2v6h6" stroke-linejoin="round"/>
+                    <path d="M9 13h6" stroke-linecap="round"/>
+                    <path d="M9 17h6" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </span>
+            </li>
+          </ul>
+          <a class="btn" href="https://github.com/tabatabaeiphys/enzyme-centrality" target="_blank" rel="noopener noreferrer">
+            View code (GitHub)
+          </a>
+        </div>
 
-<div class="item">
-  <div class="item-top">
-    <span class="role">Computational Physics in Drug Discovery (B.Sc. review)</span>
-    <span class="date">2021</span>
-  </div>
-  <div class="place">Supervisor: Dr. Ali Mokhtari, Shahrekord University</div>
-  <ul>
-    <li>Comprehensive review of physics‑based computational methods (SBDD, protein–ligand docking, QM/MM).</li>
-    <li>Produced a technical poster and developed literature‑review skills.
-      <span style="display:inline-flex; align-items:center; gap:2px; cursor:default;">
-        <span onclick="event.stopPropagation(); switchTab('certificates'); setTimeout(() => { const el = document.getElementById('poster-bsc-drug'); if(el) { el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('highlight-pulse'); setTimeout(() => el.classList.remove('highlight-pulse'), 2000); } }, 100);"
-              title="View poster"
-              style="cursor:pointer; display:inline-flex; align-items:center; opacity:0.8; transition:opacity 0.2s;"
-              onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M6 2h8l4 4v16H6V2Z" stroke-linejoin="round"/>
-            <path d="M14 2v6h6" stroke-linejoin="round"/>
-            <path d="M9 13h6" stroke-linecap="round"/>
-            <path d="M9 17h6" stroke-linecap="round"/>
-          </svg>
-        </span>
-      </span>
-    </li>
-  </ul>
-</div>
+        <div class="item">
+          <div class="item-top">
+            <span class="role">Computational Physics in Drug Discovery (B.Sc. review)</span>
+            <span class="date">2021</span>
+          </div>
+          <div class="place">Supervisor: Dr. Ali Mokhtari, Shahrekord University</div>
+          <ul>
+            <li>Comprehensive review of physics‑based computational methods (SBDD, protein–ligand docking, QM/MM).</li>
+            <li>Produced a technical poster and developed literature‑review skills.
+              <span style="display:inline-flex; align-items:center; gap:2px; cursor:default;">
+                <span onclick="event.stopPropagation(); switchTab('certificates'); setTimeout(() => { const el = document.getElementById('poster-bsc-drug'); if(el) { el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('highlight-pulse'); setTimeout(() => el.classList.remove('highlight-pulse'), 2000); } }, 100);"
+                      title="View poster"
+                      style="cursor:pointer; display:inline-flex; align-items:center; opacity:0.8; transition:opacity 0.2s;"
+                      onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.8">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2h8l4 4v16H6V2Z" stroke-linejoin="round"/>
+                    <path d="M14 2v6h6" stroke-linejoin="round"/>
+                    <path d="M9 13h6" stroke-linecap="round"/>
+                    <path d="M9 17h6" stroke-linecap="round"/>
+                  </svg>
+                </span>
+              </span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
@@ -830,11 +844,10 @@
             <span class="date">2025</span>
           </div>
           <div class="place">IUT · Graduate Course</div>
-<ul>
-  <li>Assisted with homework and grading; conducted workshops on stochastic simulations and agent‑based modeling.</li>
-  <li>Designed graded projects; held office hours and supported students with conceptual and mathematical challenges.</li>
-</ul>
-
+          <ul>
+            <li>Assisted with homework and grading; conducted workshops on stochastic simulations and agent‑based modeling.</li>
+            <li>Designed graded projects; held office hours and supported students with conceptual and mathematical challenges.</li>
+          </ul>
           <a class="btn" href="https://github.com/tabatabaeiphys/advanced-statmech-projects" target="_blank" rel="noopener noreferrer">
             Projects (GitHub)
           </a>
@@ -868,144 +881,142 @@
         </div>
       </div>
     </div>
-<!-- ==================== CERTIFICATES TAB ==================== -->
-<div class="tab-panel" id="certificates">
-  <div class="card">
-    <h2>Certificates & Licenses </h2>
 
-    <!-- Conference & Presentation Certificates -->
-    <div class="section-title" style="margin-top:18px;">Conference & Presentation Certificates</div>
-    <div class="gallery-grid">     
+    <!-- ==================== CERTIFICATES TAB ==================== -->
+    <div class="tab-panel" id="certificates">
+      <div class="card">
+        <h2>Certificates & Licenses</h2>
+        <!-- Conference & Presentation Certificates -->
+        <div class="section-title" style="margin-top:18px;">Conference & Presentation Certificates</div>
+        <div class="gallery-grid">
+          <div class="gallery-item" id="cert-yasooj">
+            <div class="gallery-thumb" data-full="assets/certificates/yasooj_certificate.jpg">
+              <img src="assets/certificates/yasooj_certificate.jpg" alt="Oral Presentation Yasouj" />
+            </div>
+            <div class="caption">Oral Presentation – Iran Physics Conference, Yasouj (2025)</div>
+          </div>
+          <div class="gallery-item" id="cert-poster-zanjan">
+            <div class="gallery-thumb" data-full="assets/certificates/poster_zanjan.jpg">
+              <img src="assets/certificates/poster_zanjan.jpg" alt="Poster Presentation Zanjan" />
+            </div>
+            <div class="caption">Poster – 30th IASBS Meeting, Zanjan (2025)</div>
+          </div>
+        </div>
 
-      <div class="gallery-item" id="cert-yasooj">
-        <div class="gallery-thumb" data-full="assets/certificates/yasooj_certificate.jpg">
-          <img src="assets/certificates/yasooj_certificate.jpg" alt="Oral Presentation Yasouj" />
+        <!-- Language Proficiency -->
+        <div class="section-title" style="margin-top:18px;">Language Proficiency</div>
+        <div class="gallery-grid">
+          <div class="gallery-item" id="cert-ielts">
+            <div class="gallery-thumb" data-full="assets/certificates/ielts.jpg">
+              <img src="assets/certificates/ielts.jpg" alt="IELTS Certificate" />
+            </div>
+            <div class="caption">IELTS – Overall Band 7.0 (C1)</div>
+          </div>
         </div>
-        <div class="caption">Oral Presentation – Iran Physics Conference, Yasouj (2025)</div>
-      </div>
-      
-    <div class="gallery-item" id="cert-poster-zanjan">     
-        <div class="gallery-thumb" data-full="assets/certificates/poster_zanjan.jpg">
-          <img src="assets/certificates/poster_zanjan.jpg" alt="Poster Presentation Zanjan" />
+
+        <!-- Workshops & Trainings -->
+        <div class="section-title" style="margin-top:18px;">Workshops & Trainings</div>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <div class="gallery-thumb" data-full="assets/certificates/qbronze172_16.jpg">
+              <img src="assets/certificates/qbronze172_16.jpg" alt="QBronze Quantum Computing" />
+            </div>
+            <div class="caption">QBronze – Quantum Computing & Programming (Diploma QBronze172-16)</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-thumb" data-full="assets/certificates/qprep20_15.jpg">
+              <img src="assets/certificates/qprep20_15.jpg" alt="QPrep Quantum Preparation" />
+            </div>
+            <div class="caption">QPrep – Quantum Computing Preparation (Diploma QPrep20-15)</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-thumb" data-full="assets/certificates/scidart_qespresso.jpg">
+              <img src="assets/certificates/scidart_qespresso.jpg" alt="Quantum ESPRESSO Workshop" />
+            </div>
+            <div class="caption">7‑day Online Quantum ESPRESSO (Scidart Academy & Gdańsk Univ.)</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-thumb" data-full="assets/certificates/condensed_matter_zanjan_29th.jpg">
+              <img src="assets/certificates/condensed_matter_zanjan_29th.jpg" alt="29th Condensed Matter Conference Zanjan" />
+            </div>
+            <div class="caption">29th IASBS Condensed Matter Physics (Zanjan)</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-thumb" data-full="assets/certificates/new_horizon_teacher.jpg">
+              <img src="assets/certificates/new_horizon_teacher.jpg" alt="New Horizon School Teaching" />
+            </div>
+            <div class="caption">Module Lead – 3rd New Horizons in Physics School, IUT</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-thumb" data-full="assets/certificates/quantum_technology_iut.jpg">
+              <img src="assets/certificates/quantum_technology_iut.jpg" alt="Quantum Technology at IUT" />
+            </div>
+            <div class="caption">Quantum Technologies Conference (IUT, Jun 2023)</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-thumb" data-full="assets/certificates/quantum_technology_zanjan.jpg">
+              <img src="assets/certificates/quantum_technology_zanjan.jpg" alt="Quantum Technology Workshop Zanjan" />
+            </div>
+            <div class="caption">Educational Workshop on Quantum Technologies (Sharif, Mar 2023)</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-thumb" data-full="assets/certificates/psiket_sharif.jpg">
+              <img src="assets/certificates/psiket_sharif.jpg" alt="Psi-Ket Workshop Sharif" />
+            </div>
+            <div class="caption">Psi‑Ket Workshop (Sharif University)</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-thumb" data-full="assets/certificates/tensor_networks.jpg">
+              <img src="assets/certificates/tensor_networks.jpg" alt="Tensor Networks Workshop" />
+            </div>
+            <div class="caption">Computational Physics: Tensor Networks (IUT, Jan 2024)</div>
+          </div>
         </div>
-        <div class="caption">Poster – 30th IASBS Meeting, Zanjan (2025)</div>
+
+        <!-- Posters -->
+        <div class="section-title" style="margin-top:18px;">Posters</div>
+        <div class="gallery-grid">
+          <div class="gallery-item" id="poster-bsc-drug">
+            <div class="gallery-thumb" data-full="assets/posters/bsc_drug_discovery_poster.jpg">
+              <img src="assets/posters/bsc_drug_discovery_poster.jpg" alt="B.Sc. Drug Discovery Poster" />
+            </div>
+            <div class="caption">B.Sc. Project – Computational Physics in Drug Discovery (review poster)</div>
+          </div>
+          <div class="gallery-item" id="poster-thesis">
+            <div class="gallery-thumb" data-full="assets/posters/thesis_defence_poster.jpg">
+              <img src="assets/posters/thesis_defence_poster.jpg" alt="Thesis Defence Poster" />
+            </div>
+            <div class="caption">M.Sc. Thesis – Exploration‑Imitation Dynamics (defence poster)</div>
+          </div>
+        </div>
+
+        <!-- Professional & Other Licences -->
+        <div class="section-title" style="margin-top:18px;">Professional & Other</div>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <div class="gallery-thumb" data-full="assets/certificates/barber_license.jpg">
+              <img src="assets/certificates/barber_license.jpg" alt="Barber Grade 1 License" />
+            </div>
+            <div class="caption">Grade 1 Barber License (150 hours, score 82/100)</div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-thumb" data-full="assets/certificates/robotic.jpg">
+              <img src="assets/certificates/robotic.jpg" alt="Robotic Certificate" />
+            </div>
+            <div class="caption">Robotics course / workshop</div>
+          </div>
+        </div>
+
+        <p style="margin-top:14px; font-size:13px; color:var(--muted);">
+          PDF academic documents (grade scale, enrolment letters, graduation certificates) are available in the <a href="#cv" style="text-decoration:underline;" onclick="switchTab('cv')">CV & Contact tab</a>.
+        </p>
       </div>
     </div>
 
-    <!-- Language Proficiency -->
-    <div class="section-title" style="margin-top:18px;">Language Proficiency</div>
-    <div class="gallery-grid">
-      <div class="gallery-item" id="cert-ielts">
-        <div class="gallery-thumb" data-full="assets/certificates/ielts.jpg">
-          <img src="assets/certificates/ielts.jpg" alt="IELTS Certificate" />
-        </div>
-        <div class="caption">IELTS – Overall Band 7.0 (C1)</div>
-      </div>
-    </div>
-
-    <!-- Workshops & Trainings -->
-    <div class="section-title" style="margin-top:18px;">Workshops & Trainings</div>
-    <div class="gallery-grid">
-
-            <div class="gallery-item">
-        <div class="gallery-thumb" data-full="assets/certificates/qbronze172_16.jpg">
-          <img src="assets/certificates/qbronze172_16.jpg" alt="QBronze Quantum Computing" />
-        </div>
-        <div class="caption">QBronze – Quantum Computing & Programming (Diploma QBronze172-16)</div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-thumb" data-full="assets/certificates/qprep20_15.jpg">
-          <img src="assets/certificates/qprep20_15.jpg" alt="QPrep Quantum Preparation" />
-        </div>
-        <div class="caption">QPrep – Quantum Computing Preparation (Diploma QPrep20-15)</div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-thumb" data-full="assets/certificates/scidart_qespresso.jpg">
-          <img src="assets/certificates/scidart_qespresso.jpg" alt="Quantum ESPRESSO Workshop" />
-        </div>
-        <div class="caption">7‑day Online Quantum ESPRESSO (Scidart Academy & Gdańsk Univ.)</div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-thumb" data-full="assets/certificates/condensed_matter_zanjan_29th.jpg">
-          <img src="assets/certificates/condensed_matter_zanjan_29th.jpg" alt="29th Condensed Matter Conference Zanjan" />
-        </div>
-        <div class="caption">29th IASBS Condensed Matter Physics (Zanjan)</div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-thumb" data-full="assets/certificates/new_horizon_teacher.jpg">
-          <img src="assets/certificates/new_horizon_teacher.jpg" alt="New Horizon School Teaching" />
-        </div>
-        <div class="caption">Module Lead – 3rd New Horizons in Physics School, IUT</div>
-      </div>
-
-      <div class="gallery-item">
-        <div class="gallery-thumb" data-full="assets/certificates/quantum_technology_iut.jpg">
-          <img src="assets/certificates/quantum_technology_iut.jpg" alt="Quantum Technology at IUT" />
-        </div>
-        <div class="caption">Quantum Technologies Conference (IUT, Jun 2023)</div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-thumb" data-full="assets/certificates/quantum_technology_zanjan.jpg">
-          <img src="assets/certificates/quantum_technology_zanjan.jpg" alt="Quantum Technology Workshop Zanjan" />
-        </div>
-        <div class="caption">Educational Workshop on Quantum Technologies (Sharif, Mar 2023)</div>
-      </div>
-
-      <div class="gallery-item">
-        <div class="gallery-thumb" data-full="assets/certificates/psiket_sharif.jpg">
-          <img src="assets/certificates/psiket_sharif.jpg" alt="Psi-Ket Workshop Sharif" />
-        </div>
-        <div class="caption">Psi‑Ket Workshop (Sharif University)</div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-thumb" data-full="assets/certificates/tensor_networks.jpg">
-          <img src="assets/certificates/tensor_networks.jpg" alt="Tensor Networks Workshop" />
-        </div>
-        <div class="caption">Computational Physics: Tensor Networks (IUT, Jan 2024)</div>
-      </div>
-    </div>
-<!-- Posters -->
-<div class="section-title" style="margin-top:18px;">Posters</div>
-<div class="gallery-grid">
-  <div class="gallery-item" id="poster-bsc-drug">
-    <div class="gallery-thumb" data-full="assets/posters/bsc_drug_discovery_poster.jpg">
-      <img src="assets/posters/bsc_drug_discovery_poster.jpg" alt="B.Sc. Drug Discovery Poster" />
-    </div>
-    <div class="caption">B.Sc. Project – Computational Physics in Drug Discovery (review poster)</div>
-  </div>
-  <div class="gallery-item" id="poster-thesis">
-    <div class="gallery-thumb" data-full="assets/posters/thesis_defence_poster.jpg">
-      <img src="assets/posters/thesis_defence_poster.jpg" alt="Thesis Defence Poster" />
-    </div>
-    <div class="caption">M.Sc. Thesis – Exploration‑Imitation Dynamics (defence poster)</div>
-  </div>
-</div>
-    <!-- Professional & Other Licences -->
-    <div class="section-title" style="margin-top:18px;">Professional & Other</div>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <div class="gallery-thumb" data-full="assets/certificates/barber_license.jpg">
-          <img src="assets/certificates/barber_license.jpg" alt="Barber Grade 1 License" />
-        </div>
-        <div class="caption">Grade 1 Barber License (150 hours, score 82/100)</div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-thumb" data-full="assets/certificates/robotic.jpg">
-          <img src="assets/certificates/robotic.jpg" alt="Robotic Certificate" />
-        </div>
-        <div class="caption">Robotics course / workshop</div>
-      </div>
-    </div>
-
-    <p style="margin-top:14px; font-size:13px; color:var(--muted);">
-      PDF academic documents (grade scale, enrolment letters, graduation certificates) are available in the <a href="#cv" style="text-decoration:underline;" onclick="switchTab('cv')">CV & Contact tab</a>.
-    </p>
-  </div>
-</div>
     <!-- ==================== GALLERY TAB ==================== -->
     <div class="tab-panel" id="gallery">
       <div class="card">
-        <h2>Gallery </h2>
+        <h2>Gallery</h2>
         <div class="gallery-grid">
           <div class="gallery-item">
             <div class="gallery-thumb" data-full="assets/gallery/defence1.jpg">
@@ -1134,7 +1145,6 @@
       localStorage.setItem('theme', theme);
     }
 
-    // Check saved preference or system preference
     const saved = localStorage.getItem('theme');
     if (saved) {
       setTheme(saved);
@@ -1144,7 +1154,6 @@
       setTheme('dark');
     }
 
-    // Listen to system theme changes
     window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
       if (!localStorage.getItem('theme')) {
         setTheme(e.matches ? 'light' : 'dark');
@@ -1211,13 +1220,11 @@
   };
 
   function replaceAbbreviations(root) {
-    // Skip script and style tags
     if (root.nodeType === Node.ELEMENT_NODE && (root.tagName === 'SCRIPT' || root.tagName === 'STYLE')) return;
     if (root.nodeType === Node.TEXT_NODE) {
       let text = root.nodeValue;
       let changed = false;
       for (const [abbr, full] of Object.entries(abbrMap)) {
-        // Build a regex that matches the abbreviation as a whole word
         const escapedAbbr = abbr.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const regex = new RegExp(`\\b${escapedAbbr}\\b`, 'g');
         if (regex.test(text)) {
