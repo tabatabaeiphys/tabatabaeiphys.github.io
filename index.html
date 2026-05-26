@@ -130,13 +130,14 @@
       gap: 10px;
       min-width: 0;
     }
-    .dot {
-      width: 12px; height: 12px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 6px rgba(255,255,255,.04);
-      flex-shrink: 0;
-    }
+.dot {
+  width: 24px;           /* Slightly larger to show the icon clearly */
+  height: 24px;
+  border-radius: 50%;    /* Keeps it round – the favicon will be cropped to a circle */
+  object-fit: cover;     /* Makes the image fill the round container */
+  flex-shrink: 0;
+  box-shadow: 0 0 0 6px rgba(255,255,255,.04);  /* same as before */
+}
     .brand-text {
       display: flex;
       flex-direction: column;
@@ -445,7 +446,7 @@
   <div class="nav">
     <div class="nav-inner">
       <div class="brand">
-        <div class="dot"></div>
+        <img class="dot" src="assets/favicon1.png" alt="" />
         <div class="brand-text">
           <strong>Mohammad Tabatabaei</strong>
           <span>Complex Systems • Statistical Physics</span>
