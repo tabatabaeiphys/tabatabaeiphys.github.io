@@ -24,7 +24,7 @@
   <meta name="twitter:title" content="Mohammad Tabatabaei — Academic Profile" />
   <meta name="twitter:description" content="Complex Systems, Statistical Physics, Network Science, Agent-based modeling." />
   <meta name="twitter:image" content="https://tabatabaeiphys.github.io/assets/preview.jpg" />
-<link rel="icon" type="image/png" href="assets/favicon1.png" />
+<link rel="icon" type="image/png" href="assets/favicon1.png?v=2" />
 
   <style>
     /* ========== DARK THEME (default) ========== */
@@ -133,14 +133,37 @@
       gap: 10px;
       min-width: 0;
     }
-.dot {
-  width: 24px;           /* Slightly larger to show the icon clearly */
-  height: 24px;
-  border-radius: 50%;    /* Keeps it round – the favicon will be cropped to a circle */
-  object-fit: cover;     /* Makes the image fill the round container */
+
+    .dot {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  object-fit: contain;
+  padding: 3px;
   flex-shrink: 0;
-  box-shadow: 0 0 0 6px rgba(255,255,255,.04);  /* same as before */
+
+  background: rgba(125, 211, 252, .08);
+  border: 1px solid rgba(125, 211, 252, .28);
+  box-shadow:
+    0 0 0 4px rgba(255, 255, 255, .04),
+    0 0 18px rgba(125, 211, 252, .25);
 }
+
+[data-theme="light"] .dot {
+  background: rgba(30, 110, 158, .08);
+  border: 1px solid rgba(30, 110, 158, .25);
+  box-shadow:
+    0 0 0 4px rgba(0, 0, 0, .03),
+    0 4px 14px rgba(0, 0, 0, .10);
+}
+
+@media (max-width: 700px) {
+  .dot {
+    width: 40px;
+    height: 40px;
+  }
+}
+
     .brand-text {
       display: flex;
       flex-direction: column;
@@ -450,7 +473,7 @@
   <div class="nav">
     <div class="nav-inner">
       <div class="brand">
-        <img class="dot" src="assets/favicon1.png" alt="" />
+        <img class="dot" src="assets/logo-network.png?v=2" alt="Network logo" />
         <div class="brand-text">
           <strong>Mohammad Tabatabaei</strong>
           <span>Complex Systems • Statistical Physics</span>
