@@ -1172,28 +1172,34 @@ Designed a graded project that investigated the influence of network density on 
       setTheme(current === 'dark' ? 'light' : 'dark');
     });
 
-    // ========== TAB SWITCHING (supports back/forward navigation) ==========
-    function switchTab(tabId, push = true) {
-      // Update panel visibility
-      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  
+    function switchTab(tabId, push = true, scrollToTop = true) {
+  // Update panel visibility
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
 
-      const panel = document.getElementById(tabId);
-      if (panel) panel.classList.add('active');
+  const panel = document.getElementById(tabId);
+  if (panel) panel.classList.add('active');
 
-      const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-      if (btn) btn.classList.add('active');
+  const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
+  if (btn) btn.classList.add('active');
 
-      // Update URL and history
-      const hash = '#' + tabId;
-      if (push) {
-        history.pushState(null, null, hash);
-      } else {
-        // We are already at that hash (from popstate), just sync the view without pushing
-        // Use replaceState to avoid adding a duplicate entry if we came from a direct popstate
-        history.replaceState(null, null, hash);
-      }
-    }
+  const hash = '#' + tabId;
+  if (push) {
+    history.pushState(null, null, hash);
+  } else {
+    history.replaceState(null, null, hash);
+  }
+
+  if (scrollToTop) {
+    requestAnimationFrame(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+}
 
     // Handle clicks on tabs (event delegation)
     document.getElementById('tabNav').addEventListener('click', (e) => {
